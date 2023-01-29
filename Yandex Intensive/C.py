@@ -10,7 +10,10 @@ if len(mn1) not in mn2:
     print(len(mn1))
 else:
     nums = sorted(mn2)
-    for i in range(len(mn2) - 1):
-        if nums[i + 1] - nums[i] != 1:
-            print(i + 2)
-            break
+    if nums[0] != 1:
+        print(1)
+    else:
+        for i in range(len(mn2) - 1):
+            if nums[i + 1] - nums[i] != 1:
+                print(i + 2)
+                break
