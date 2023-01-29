@@ -1,14 +1,10 @@
 st = input()
 sp = list(map(int, st.split()))
-ans = None
-start = 0
-end = start + 1
-while end < len(sp):
-    res = sp[start] * sp[end]
-    if ans is None or res < ans:
-        ans = res
-    end += 1
-    if end == len(sp):
-        start += 1
-        end = start + 1
-print(ans)
+mn1 = min(sp)
+mx = max(sp)
+sp.remove(mn1)
+mn2 = min(sp)
+if mn1 < 0:
+    print(mn1 * mx)
+else:
+    print(mn1 * mn2)
