@@ -1,11 +1,18 @@
 n = int(input())
-sp = list(map(int, input().split()))
-numbers = dict()
-for elem in sp:
-    if elem not in numbers:
-        numbers[elem] = 1
+sp1 = list(map(int, input().split()))
+m = int(input())
+sp2 = list(map(int, input().split()))
+i = 0
+j = 0
+while i < n and j < m:
+    if sp1[i] == sp2[j]:
+        print(sp1[i], end=" ")
+        i += 1
+        j += 1
     else:
-        numbers[elem] += 1
-for key, value in numbers.items():
-    if value == 1:
-        print(key, end=" ")
+        if sp1[i] > sp2[j]:
+            while j < m and sp1[i] > sp2[j]:
+                j += 1
+        else:
+            while i < n and sp1[i] < sp2[j]:
+                i += 1
