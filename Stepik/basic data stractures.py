@@ -1,12 +1,11 @@
 n = int(input())
-a = list(map(int, input().split()))
-m = int(input())
-b = list(map(int, input().split()))
-for elem in a:
-    flag = True
-    for el in b:
-        if elem == el:
-            flag = False
-            break
-    if flag:
-        print(elem, end=' ')
+sp = list(map(int, input().split()))
+numbers = dict()
+for elem in sp:
+    if elem not in numbers:
+        numbers[elem] = 1
+    else:
+        numbers[elem] += 1
+for key, value in numbers.items():
+    if value == 1:
+        print(key, end=" ")
