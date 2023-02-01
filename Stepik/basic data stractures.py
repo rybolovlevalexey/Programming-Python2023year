@@ -1,6 +1,12 @@
 n = int(input())
-sp = list(map(int, input().split()))
-k = int(input())
-for i in range(k, n - 1):
-    sp[i] = sp[i + 1]
-print(*sp[:-1])
+a = list(map(int, input().split()))
+m = int(input())
+b = list(map(int, input().split()))
+for elem in a:
+    flag = True
+    for el in b:
+        if elem == el:
+            flag = False
+            break
+    if flag:
+        print(elem, end=' ')
