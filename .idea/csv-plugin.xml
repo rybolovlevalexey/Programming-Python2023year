@@ -17,6 +17,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\Stepik\basic data stractures.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\Yandex Intensive\A.py">
           <value>
             <Attribute>
@@ -42,6 +49,13 @@
           <value>
             <Attribute>
               <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\Yandex Intensive\F.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
             </Attribute>
           </value>
         </entry>
