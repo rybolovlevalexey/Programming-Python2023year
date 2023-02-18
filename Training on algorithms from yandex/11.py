@@ -19,3 +19,13 @@ class Stack:
             print("error")
         else:
             print(self.sp[-1])
+
+    def size(self):
+        print(len(self.sp))
+
+    def clear(self):
+        self.sp = list()
+        print("ok")
+
+    def exit(self):
+        print("bye")
