@@ -29,3 +29,14 @@ class Stack:
 
     def exit(self):
         print("bye")
+
+
+stack = Stack()
+st = input()
+while st != "exit":
+    if len(st.split()) == 2:
+        stack.push(int(st.split()[-1]))
+    else:
+        eval(f"stack.{st}()")
+    st = input()
+stack.exit()
