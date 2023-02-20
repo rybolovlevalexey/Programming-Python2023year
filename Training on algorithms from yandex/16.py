@@ -57,8 +57,29 @@ class Queue:
             self.Head.Prev = None
             print(val)
 
+    def front(self):
+        if self.Head is None:
+            print("error")
+        else:
+            print(self.Head.Value)
 
-queue = Queue()
-queue.push(1)
-queue.push(2)
-queue.push(3)
+    def size(self):
+        if self.Head is None:
+            cnt = 0
+        else:
+            cur = self.Head.Next
+            cnt = 1
+            while cur is not None:
+                cnt += 1
+                cur = cur.Next
+        print(cnt)
+
+    def clear(self):
+        self.Head = None
+        print("ok")
+
+    def exit(self):
+        print("bye")
+
+
+
