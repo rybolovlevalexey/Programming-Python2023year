@@ -70,7 +70,41 @@ class Queue:
         print("bye")
 
 
-queue = Queue()
+class Queue1:
+    def __init__(self):
+        self.sp = list()
+
+    def __str__(self):
+        return " ".join(self.sp)
+
+    def push(self, value):
+        self.sp.append(value)
+        print("ok")
+
+    def pop(self):
+        if len(self.sp) == 0:
+            print("error")
+        else:
+            print(self.sp.pop(0))
+
+    def front(self):
+        if len(self.sp) == 0:
+            print("error")
+        else:
+            print(self.sp[0])
+
+    def size(self):
+        print(len(self.sp))
+
+    def clear(self):
+        self.sp = list()
+        print("ok")
+
+    def exit(self):
+        print("bye")
+
+
+queue = Queue1()
 st = input()
 while st != "exit":
     st = st.split()
