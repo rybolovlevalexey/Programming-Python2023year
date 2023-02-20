@@ -1,16 +1,7 @@
 class QueueElement:
     def __init__(self, x):
         self.Value = x
-        self.__Prev = None
         self.__Next = None
-
-    @property
-    def Prev(self):
-        return self.__Prev
-
-    @Prev.setter
-    def Prev(self, elem):
-        self.__Prev = elem
 
     @property
     def Next(self):
@@ -44,8 +35,6 @@ class Queue:
             while cur.Next is not None:
                 cur = cur.Next
             cur.Next = QueueElement(value)
-            cur_new = cur.Next
-            cur_new.Prev = cur
         print("ok")
 
     def pop(self):
@@ -54,7 +43,6 @@ class Queue:
         else:
             val = self.Head.Value
             self.Head = self.Head.Next
-            self.Head.Prev = None
             print(val)
 
     def front(self):
@@ -82,4 +70,13 @@ class Queue:
         print("bye")
 
 
-
+queue = Queue()
+st = input()
+while st != "exit":
+    st = st.split()
+    if len(st) == 2:
+        queue.push(int(st[1]))
+    else:
+        eval(f"queue.{st[0]}()")
+    st = input()
+queue.exit()
