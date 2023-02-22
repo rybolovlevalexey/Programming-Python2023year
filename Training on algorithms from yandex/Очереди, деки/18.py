@@ -63,6 +63,48 @@ class Deque:
             self.Head = SpisokElem(elem)
         print("ok")
 
+    def pop_front(self):
+        if self.Head is None:
+            print("error")
+        else:
+            value = self.Head.Value
+            self.Head = self.Head.Next
+            print(value)
+
+    def pop_back(self):
+        if self.Head is None:
+            print("error")
+        else:
+            if self.Head.Next is None:
+                print(self.Head.Value)
+                self.Head = None
+            else:
+                cur1 = None
+                cur = self.Head
+                while cur.Next is not None:
+                    cur1 = cur
+                    cur = cur.Next
+                value = cur.Value
+                cur1.Next = None
+                print(value)
+
+    def front(self):
+        if self.Head is None:
+            print("error")
+        else:
+            value = self.Head.Value
+            print(value)
+
+    def back(self):
+        if self.Head is None:
+            print("error")
+        else:
+            cur = self.Head
+            while cur.Next is not None:
+                cur = cur.Next
+            value = cur.Value
+            print(value)
+
     def push_back(self, elem):
         if self.Head is None:
             self.Head = SpisokElem(elem)
@@ -72,6 +114,9 @@ class Deque:
                 cur = cur.Next
             cur.Next = SpisokElem(elem)
         print("ok")
+
+
+
 
 
 deque = Deque()
