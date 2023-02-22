@@ -115,6 +115,26 @@ class Deque:
             cur.Next = SpisokElem(elem)
         print("ok")
 
+    def size(self):
+        if self.Head is None:
+            cnt = 0
+        elif self.Head is not None and self.Head.Next is None:
+            cnt = 1
+        else:
+            cur = self.Head
+            cnt = 0
+            while cur is not None:
+                cnt += 1
+                cur = cur.Next
+        print(cnt)
+
+    def clear(self):
+        self.Head = None
+        print("ok")
+
+    def exit(self):
+        print("bye")
+
 
 
 
