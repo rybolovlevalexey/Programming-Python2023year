@@ -45,22 +45,27 @@ class DequeList:
 
     def exit(self):
         print("bye")
+
+
 class SpisokElem:
     def __init__(self, n):
         self.Value = n
         self.Next = None
         self.Prev = None
+
+
 class Deque:
     def __init__(self):
         self.Head = None
-        #self.Tail = None
+        # self.Tail = None
 
     def push_front(self, elem):
         if self.Head is None:
             self.Head = SpisokElem(elem)
         else:
-            self.Head.Next = self.Head
+            cur = self.Head
             self.Head = SpisokElem(elem)
+            self.Head.Next = cur
         print("ok")
 
     def pop_front(self):
@@ -134,9 +139,6 @@ class Deque:
 
     def exit(self):
         print("bye")
-
-
-
 
 
 deque = Deque()
