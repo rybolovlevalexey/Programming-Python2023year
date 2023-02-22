@@ -1,4 +1,4 @@
-class Deque:
+class DequeList:
     def __init__(self):
         self.sp = list()
 
@@ -45,6 +45,33 @@ class Deque:
 
     def exit(self):
         print("bye")
+class SpisokElem:
+    def __init__(self, n):
+        self.Value = n
+        self.Next = None
+        self.Prev = None
+class Deque:
+    def __init__(self):
+        self.Head = None
+        #self.Tail = None
+
+    def push_front(self, elem):
+        if self.Head is None:
+            self.Head = SpisokElem(elem)
+        else:
+            self.Head.Next = self.Head
+            self.Head = SpisokElem(elem)
+        print("ok")
+
+    def push_back(self, elem):
+        if self.Head is None:
+            self.Head = SpisokElem(elem)
+        else:
+            cur = self.Head
+            while cur.Next is not None:
+                cur = cur.Next
+            cur.Next = SpisokElem(elem)
+        print("ok")
 
 
 deque = Deque()
