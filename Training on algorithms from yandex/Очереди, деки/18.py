@@ -45,3 +45,15 @@ class Deque:
 
     def exit(self):
         print("bye")
+
+
+deque = Deque()
+st = input()
+while st != "exit":
+    if len(st.split()) == 2:
+        deyst, n = st.split()
+        eval(f"deque.{deyst}({n})")
+    else:
+        eval(f"deque.{st}()")
+    st = input()
+deque.exit()
