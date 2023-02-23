@@ -1,6 +1,7 @@
 def func(pi):
     global n
     end = n
+    delta = n // 2
     while True:
         if end == 1:
             if diego[end] < pi:
@@ -9,18 +10,22 @@ def func(pi):
                 if diego[0] < pi:
                     return 0
                 return -1
-        ind = end // 2
+        ind = end - delta
+        print("ind", ind)
+        while ind >= n:
+            ind -= 1
+        delta //= 2
+        if delta == 0:
+            delta = 1
         elem = diego[ind]
         if elem == pi:
-            #print("here 11")
             return ind - 1
         if elem > pi and diego[ind - 1] < pi:
-            #print("here12")
             return ind - 1
         if elem < pi:
-            end = (end + ind) // 2
+            end = end + delta
         else:
-            end = ind
+            end = end - delta
 
 
 int(input())
@@ -34,13 +39,10 @@ for collector in map(int, input().split()):
     if n == 1:
         print(1 if diego[0] < collector else 0)
     elif mx < collector:
-        #print("here1", end=' ')
         print(n)
     elif mx == collector:
         print(n - 1)
     elif mn >= collector:
-        #print("here2", end=' ')
         print(0)
     else:
-        #print("here3", end=' ')
         print(func(collector) + 1)
