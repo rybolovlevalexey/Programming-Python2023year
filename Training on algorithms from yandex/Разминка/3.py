@@ -1,7 +1,7 @@
 def func(pi):
     global n
-    end = n
-    delta = n // 2
+    end = n // 2
+    delta = n // 4
     while True:
         if end == 1:
             if diego[end] < pi:
@@ -10,18 +10,14 @@ def func(pi):
                 if diego[0] < pi:
                     return 0
                 return -1
-        ind = end - delta
-        print("ind", ind)
-        while ind >= n:
-            ind -= 1
+        elem = diego[end - delta]
+        if elem == pi or diego[end - delta - 1] < pi < elem:
+            ind = end - delta
+            return ind - 1
+
         delta //= 2
         if delta == 0:
             delta = 1
-        elem = diego[ind]
-        if elem == pi:
-            return ind - 1
-        if elem > pi and diego[ind - 1] < pi:
-            return ind - 1
         if elem < pi:
             end = end + delta
         else:
