@@ -3,8 +3,6 @@ class HeapElem:
         self.value = value
         self.left = None
         self.right = None
-
-
 class Heap:
     def __init__(self):
         self.Head = None
@@ -27,3 +25,31 @@ class Heap:
                 self.RemaindCnt = 2**self.Level - 1
             else:
                 self.RemaindCnt -= 1
+
+
+class Heap1:
+    def __init__(self):
+        self.sp = list()
+
+    def insert(self, k):
+        self.sp.append(k)
+        pos = len(self.sp) - 1
+        while pos > 0 and self.sp[pos] > self.sp[(pos - 1) // 2]:
+            self.sp[pos], self.sp[(pos - 1) // 2] = self.sp[(pos - 1) // 2], self.sp[pos]
+            pos = (pos - 1) // 2
+
+    def extract(self):
+        ans = self.sp[0]
+        last = self.sp.pop(-1)
+        self.sp[0] = last
+        pos = 0
+        while pos * 2 + 1 < len(self.sp):
+            max_son_index = pos * 2 + 1
+            if max_son_index + 1 < len(self.sp) and self.sp[pos * 2 + 2] > self.sp[max_son_index]:
+                max_son_index += 1
+            if self.sp[pos] < self.sp[max_son_index]:
+                self.sp[pos], self.sp[max_son_index] = self.sp[max_son_index], self.sp[pos]
+                pos = max_son_index
+            else:
+                break
+        return ans
