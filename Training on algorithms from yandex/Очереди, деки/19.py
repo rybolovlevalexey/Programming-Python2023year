@@ -40,16 +40,28 @@ class Heap1:
 
     def extract(self):
         ans = self.sp[0]
-        last = self.sp.pop(-1)
+        last = self.sp[-1]
         self.sp[0] = last
         pos = 0
-        while pos * 2 + 1 < len(self.sp):
+        while pos * 2 + 1 < len(self.sp) - 1:
             max_son_index = pos * 2 + 1
-            if max_son_index + 1 < len(self.sp) and self.sp[pos * 2 + 2] > self.sp[max_son_index]:
+            if self.sp[pos * 2 + 2] > self.sp[max_son_index]:
                 max_son_index += 1
             if self.sp[pos] < self.sp[max_son_index]:
                 self.sp[pos], self.sp[max_son_index] = self.sp[max_son_index], self.sp[pos]
                 pos = max_son_index
             else:
                 break
+        del self.sp[-1]
         return ans
+
+
+hp = Heap1()
+for i in range(int(input())):
+    st = input().strip()
+    if " " in st:
+        st = st.split()
+        hp.insert(int(st[1]))
+    else:
+        res = (hp.extract())
+        print(res)
