@@ -17,7 +17,7 @@ if Time(*first) < Time(*third):
     C = third[0] * 3600 + third[1] * 60 + third[2]
 else:
     C = (third[0] + 24) * 3600 + third[1] * 60 + third[2]
-delay = round((C - A) / 2)
+delay = (C - A) / 2
 if delay == int(delay):
     delay = int(delay)
 else:
