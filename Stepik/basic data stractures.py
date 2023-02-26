@@ -1,10 +1,8 @@
-ans = set()
+ans = dict()
 for i in range(int(input())):
-    mn = set()
-    for j in range(int(input())):
-        mn.add(input())
-    if i == 0:
-        ans = mn.copy()
+    st = input()
+    if st in ans:
+        ans[st] += 1
     else:
-        ans = ans & mn
-print(len(ans))
+        ans[st] = 1
+print(sum(filter(lambda x: x != 1, ans.values())))
