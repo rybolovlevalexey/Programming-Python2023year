@@ -1,9 +1,10 @@
-n = int(input())
-books = set()
-for i in range(n):
-    books.add(input())
+ans = set()
 for i in range(int(input())):
-    if input() in books:
-        print("YES")
+    mn = set()
+    for j in range(int(input())):
+        mn.add(input())
+    if i == 0:
+        ans = mn.copy()
     else:
-        print("NO")
+        ans = ans & mn
+print(len(ans))
