@@ -1,39 +1,22 @@
-# (название, содержимые элементы, родительские пространства, дочерние)
-def func(st):
-    if st[0] == "create":
-        namespace, parent = st[1], st[2]
-        for j in range(len(spaces)):
-            if spaces[j][0] == parent:
-                spaces[j][3].append(namespace)
-                spaces.append((namespace, [], [parent] + spaces[j][2], []))
-                return
-    elif st[0] == "add":
-        namespace, var = st[1], st[2]
-        for j in range(len(spaces)):
-            if spaces[j][0] == namespace:
-                spaces[j][1].append(var)
-                return
-    else:
-        namespace, var = st[1], st[2]
-        for j in range(len(spaces)):
-            if spaces[j][0] == namespace:
-                if var in spaces[j][1]:
-                    return namespace
-                else:
-                    for fath_name in spaces[j][2]:
-                        for k in range(len(spaces)):
-                            if spaces[k][0] == fath_name:
-                                if var in spaces[k][1]:
-                                    return fath_name
-        return None
-
-
-spaces = list()
-spaces.append(("global", [], [], []))
+# (имя, родители, дети)
+sp_classes = dict()
 n = int(input())
 for i in range(n):
-    stroka = input().strip().split()
-    if stroka[0] == "create" or stroka[0] == "add":
-        func(stroka)
+    stroka = input().strip()
+    if ":" not in stroka:
+        sp_classes[stroka] = []
     else:
-        print(func(stroka))
+        name, parents = stroka.split(" : ")
+        sp_classes[name] = parents.split()
+        for par in parents:
+            sp_classes[name].extend(sp_classes.get(par, []))
+
+print(sp_classes)
+m = int(input())
+for i in range(m):
+    first, second = input().split()
+    if first in sp_classes and second in sp_classes and \
+            (first in sp_classes[second] or first == second):
+        print("Yes")
+    else:
+        print("No")
