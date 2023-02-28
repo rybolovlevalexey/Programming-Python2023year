@@ -19,10 +19,19 @@ for key in sp_classes.keys():
 #print(sp_classes)
 
 m = int(input())
+sp = list()
 for i in range(m):
-    first, second = input().split()
-    if first in sp_classes and second in sp_classes and \
-            (first in sp_classes[second] or first == second):
-        print("Yes")
+    error = input()
+    if len(sp) == 0:
+        sp.append(error)
+        for key in sp_classes:
+            if error in sp_classes[key]:
+                sp.append(key)
     else:
-        print("No")
+        if error not in sp:
+            sp.append(error)
+            for key in sp_classes:
+                if error in sp_classes[key]:
+                    sp.append(key)
+        else:
+            print(error)
