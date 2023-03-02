@@ -1,3 +1,5 @@
+import bisect
+
 def func(pi):
     global n
     end = n // 2
