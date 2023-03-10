@@ -4,8 +4,5 @@ import sys
 
 for line in sys.stdin:
     line = line.strip()
-    print(re.sub("human", "computer", line))
-    #for elem in line.split():
-    #    res = re.match(r"^(\w+)*\1", elem)
-    #    if res:
-    #        print(res, line)
+    if re.match(r"\b(\w\W+)\1\b", line):
+        print(line)
