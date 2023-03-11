@@ -1,18 +1,34 @@
+import random
 class Solution(object):
-    def canConstruct(self, ransomNote, magazine):
+    def __init__(self, nums):
         """
-        :type ransomNote: str
-        :type magazine: str
-        :rtype: bool
+        :type nums: List[int]
         """
-        letters = dict()
-        for elem in magazine:
-            if elem not in letters:
-                letters[elem] = 1
-            else:
-                letters[elem] += 1
-        for elem in ransomNote:
-            if elem not in letters or letters[elem] == 0:
-                return False
-            letters[elem] -= 1
-        return True
+        self.og_nums = nums
+
+    def reset(self):
+        """
+        :rtype: List[int]
+        """
+        return self.og_nums
+
+    def shuffle(self):
+        """
+        :rtype: List[int]
+        """
+        ans = self.og_nums[::-1]
+        for i in range(len(ans) * 3):
+            ind1 = random.randint(0, len(ans))
+            ind2 = random.randint(0, len(ans))
+            if ind1 == ind2:
+                continue
+            ans[ind1], ans[ind2] = ans[ind2], ans[ind1]
+        return ans
+
+
+# Your Solution object will be instantiated and called as such:
+nums = [1, 2, 3, 4, 5]
+obj = Solution(nums)
+param_1 = obj.reset()
+param_2 = obj.shuffle()
+print(param_2, param_1)
