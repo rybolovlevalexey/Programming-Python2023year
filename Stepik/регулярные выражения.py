@@ -4,5 +4,4 @@ import sys
 
 for line in sys.stdin:
     line = line.strip()
-    if re.match(r"\b(\w\W+)\1\b", line):
-        print(line)
+    print(re.sub("\b[Aa]+\b", "argh", line, count=1))
