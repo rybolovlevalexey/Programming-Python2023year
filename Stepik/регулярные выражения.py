@@ -4,5 +4,5 @@ import sys
 
 for line in sys.stdin:
     line = line.strip()
-    res = re.sub(r"\b([aA]+)\b", "argh", line, count=1)
+    res = re.sub(r"(\w{2,})", "\\1", line)
     print(res)

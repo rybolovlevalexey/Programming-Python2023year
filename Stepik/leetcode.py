@@ -1,34 +1,17 @@
-import random
 class Solution(object):
-    def __init__(self, nums):
+    def fizzBuzz(self, n):
         """
-        :type nums: List[int]
+        :type n: int
+        :rtype: List[str]
         """
-        self.og_nums = nums
-
-    def reset(self):
-        """
-        :rtype: List[int]
-        """
-        return self.og_nums
-
-    def shuffle(self):
-        """
-        :rtype: List[int]
-        """
-        ans = self.og_nums[::-1]
-        for i in range(len(ans) * 3):
-            ind1 = random.randint(0, len(ans))
-            ind2 = random.randint(0, len(ans))
-            if ind1 == ind2:
-                continue
-            ans[ind1], ans[ind2] = ans[ind2], ans[ind1]
+        ans = list()
+        for i in range(1, n + 1):
+            if i % 3 == 0 and i % 5 == 0:
+                ans.append("FizzBuzz")
+            elif i % 3 == 0:
+                ans.append("Fizz")
+            elif i % 5 == 0:
+                ans.append("Buzz")
+            else:
+                ans.append(str(i))
         return ans
-
-
-# Your Solution object will be instantiated and called as such:
-nums = [1, 2, 3, 4, 5]
-obj = Solution(nums)
-param_1 = obj.reset()
-param_2 = obj.shuffle()
-print(param_2, param_1)
