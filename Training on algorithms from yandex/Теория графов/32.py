@@ -32,13 +32,13 @@ while False in sp_visit.values():
     now = min(sp_visit.keys())
     try:
         dfs(sp_svz, now)
-    except Exception:
-        print(sp_svz, now)
+    except Exception as ex:
+        print(ex)
     ans_ans.append(sorted(ans))
     for elem in ans:
         del sp_visit[elem]
 
 print(len(ans_ans))
-for elem in ans_ans:
-    print(len(elem))
-    print(*elem)
+#for elem in ans_ans:
+#    print(len(elem))
+#    print(*elem)
