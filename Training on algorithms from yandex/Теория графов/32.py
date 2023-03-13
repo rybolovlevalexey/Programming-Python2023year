@@ -1,12 +1,3 @@
-def dfs(graph, now):
-    ans.append(now)
-    sp_visit[now] = True
-    for neigh in graph.get(now, list()):
-        if not sp_visit.get(neigh, True):
-
-            dfs(graph, neigh)
-
-
 file = open("16.txt", "r")
 n, m = map(int, file.readline().split())
 sp_svz = dict()
@@ -22,7 +13,6 @@ for i in range(m):
         sp_svz[second].add(first)
     else:
         sp_svz[second] = {first}
-
 ans_ans = list()
 sp_visit = dict()
 for key in range(1, n + 1):
@@ -30,10 +20,18 @@ for key in range(1, n + 1):
 while False in sp_visit.values():
     ans = list()
     now = min(sp_visit.keys())
-    try:
-        dfs(sp_svz, now)
-    except Exception as ex:
-        print(ex)
+    # установку в минимальную точку новой компоненты связности
+    queue = list()
+    sp_visit[now] = True
+    queue.extend(sp_svz.get(now, list()))
+    while len(queue) > 0:
+        node = queue.pop()
+        while node in queue:
+            queue.remove(node)
+        sp_visit[node] = True
+        for new_node in sp_svz.get(node, list()):
+            if new_node not in queue and not sp_visit.get(new_node, True):
+                queue.append(new_node)
     ans_ans.append(sorted(ans))
     for elem in ans:
         del sp_visit[elem]

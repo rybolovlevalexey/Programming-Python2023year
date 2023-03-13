@@ -1,4 +1,3 @@
-queue = list()
 n, m = map(int, input().split())
 sp_svz = dict()
 for i in range(m):
@@ -19,6 +18,7 @@ sp_visit = dict()
 for key in range(1, n + 1):
     sp_visit[key] = False
 # старт в первом узле
+queue = list()
 sp_visit[1] = True
 queue.extend(sp_svz.get(1, list()))
 # обход всех остальных
