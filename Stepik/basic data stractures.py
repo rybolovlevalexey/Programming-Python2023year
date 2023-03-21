@@ -1,14 +1,14 @@
 n = int(input())
-mn = set()
+goblins = list()
 for i in range(n):
     st = input()
-    mn.add(st)
-m = int(input())
-for j in range(m):
-    st = input()
-    flag = False
-    for elem in mn:
-        if elem == st or st.startswith(elem):
-            flag = True
-            break
-    print("YES" if flag else "NO")
+    if st == "-":
+        print(goblins[0])
+        del goblins[0]
+    else:
+        st = st.split()
+        if st[0] == "+":
+            goblins.append(st[1])
+        else:
+            goblins = goblins[:len(goblins) // 2 + len(goblins) % 2] + [st[1]]\
+                      + goblins[len(goblins) // 2 + len(goblins) % 2:]
