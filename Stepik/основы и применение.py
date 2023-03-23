@@ -1,15 +1,16 @@
-import requests
-import re
+from xml.etree import ElementTree
 
-first = input()
-second = input()
-res = requests.get(first)
-urls = list()
-result_first = re.findall("href=\"(.*)\"", res.text)
-for new_url in result_first:
-    responce = requests.get(new_url)
-    urls.extend(re.findall("href=\"(.*)\"", responce.text))
-if second in urls or second.replace("stepik", "stepic") in urls:
-    print("Yes")
-else:
-    print("No")
+# работа с xml на чтение
+tree = ElementTree.parse("file name")  # создание дерева с передачей ему имени xml файла
+root = tree.getroot()  # получение корня дерева
+for element in root.iter("scores"):  # поиск тега со значением scores
+    for elem in element:  # перебор всех элементов внутри тега scores
+        pass
+
+# работа с xml на запись
+root[0].iter("module1").text = "new score in module1"  # изменение значения в теге module1
+# первого тега из корня
+desc = ElementTree.Element("description")  # создание нового тега, который надо создать
+desc.text = "some text"  # изменение атрибута text
+root[0].append(desc)  # добавление нового тега в необходимую часть файла
+tree.write("file name")  # запись всех изменений
