@@ -1,7 +1,9 @@
+import itertools
 class Solution(object):
-    def maximumWealth(self, accounts):
+    def mostCompetitive(self, nums, k):
         """
-        :type accounts: List[List[int]]
-        :rtype: int
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
         """
-        return max(map(sum, accounts))
+        print(max(itertools.combinations(nums, k)))
