@@ -1,9 +1,20 @@
-import itertools
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 class Solution(object):
-    def mostCompetitive(self, nums, k):
+    def middleNode(self, head):
         """
-        :type nums: List[int]
-        :type k: int
-        :rtype: List[int]
+        :type head: ListNode
+        :rtype: ListNode
         """
-        print(max(itertools.combinations(nums, k)))
+        cur = head
+        mid = head
+        cnt = 1
+        while cur.next is not None:
+            cur = cur.next
+            cnt += 1
+            if cnt % 2 == 0:
+                mid = mid.next
+        return mid
