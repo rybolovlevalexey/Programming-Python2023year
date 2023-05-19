@@ -1,21 +1,26 @@
-#3.2б
+#3.2
 import random
 
-n = int(input("Введите порядок матрицы "))
+n = int(input("Введите кол-во строк матрицы "))
+m = int(input("Введите кол-во столбцов матрицы "))
 matrix = list()
+# вариант с рандомным заданием исходной матрицы
+print("Матрица A:")
 for i in range(n):
     line = list()
-    for j in range(n):
-        line.append(random.randint(-9, 9))
+    for j in range(m):
+        elem = random.randint(10, 99)
+        line.append(elem)
+        print(elem, end=" ")
     matrix.append(line)
-for line in matrix:
-    for i in range(n):
-        elem = str(line[i])
-        if i == 0:
-            print(" " * (2 - len(elem)) + elem, end="")
-        else:
-            print(" " * (3 - len(elem)) + elem, end="")
     print()
+
+print("Матрица B:")
+answer = list()
 for i in range(n):
-    if matrix[i][i] < 0:
-        print(f"Наибольший элемент строки {i + 1}: {max(matrix[i])}")
+    answer.append(sorted(matrix[i])[::-1])
+for line in answer:
+    for j in range(m):
+        elem = str(line[j])
+        print(elem, end=" ")
+    print()
