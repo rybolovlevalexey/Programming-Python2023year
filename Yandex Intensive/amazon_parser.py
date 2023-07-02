@@ -1,14 +1,27 @@
-import requests
-import bs4
+spisok = [5, 3, 2, 6, 4, 1]
 
-url = "https://www.amazon.com/s?k=python&i=stripbooks-intl-ship&ref=nb_sb_noss"
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-    'Accept-Language': 'ru-ru,ru;q=0.8,en-us;q=0.5,en;q=0.3',
-    'Accept-Encoding': 'gzip, deflate',
-    'Connection': 'keep-alive',
-    'DNT': '1'}
-responce = requests.get(url, headers=headers)
-soup = bs4.BeautifulSoup(responce.text)
-print(soup.find_all("div"))
+
+def sort1(sp: list) -> list:
+    if len(sp) == 1:
+        return sp
+    if len(sp) == 2:
+        if sp[0] < sp[1]:
+            return sp
+        return [sp[1], sp[0]]
+    res = list()
+    first = iter(sort1(sp[:len(sp) // 2 + 1]))
+    second = iter(sort1(sp[len(sp) // 2 + 1:]))
+    a, b = first.__next__(), second.__next__()
+    while a is not None or b is not None:
+        if a is None:
+            res.append(b)
+            b = second.__next__()
+        elif b is None or a < b:
+            res.append(a)
+            a = first.__next__()
+        else:
+            res.append(b)
+            b = second.__next__()
+    return res
+
+print(sort1(spisok))
