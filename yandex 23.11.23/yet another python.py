@@ -1,6 +1,26 @@
-n = int(input())
-line_num = 1
-while line_num <= n:
-    n -= line_num
-    line_num += 1
-print(line_num - 1)
+st = input()
+sp = list()
+name = None
+for i in range(len(st)):
+    elem = st[i]
+    if elem == "/":
+        if name is not None:
+            if name == "..":
+                if len(sp) > 0:
+                    del sp[-1]
+            elif name != ".":
+                sp.append(name)
+            name = None
+    else:
+        if name is None:
+            name = elem
+        else:
+            name += elem
+if name is not None:
+    if name == "..":
+        if len(sp) > 0:
+            del sp[-1]
+    elif name != ".":
+        sp.append(name)
+
+print("/" + "/".join(sp))
