@@ -1,26 +1,9 @@
-st = input()
-sp = list()
-name = None
-for i in range(len(st)):
-    elem = st[i]
-    if elem == "/":
-        if name is not None:
-            if name == "..":
-                if len(sp) > 0:
-                    del sp[-1]
-            elif name != ".":
-                sp.append(name)
-            name = None
-    else:
-        if name is None:
-            name = elem
-        else:
-            name += elem
-if name is not None:
-    if name == "..":
-        if len(sp) > 0:
-            del sp[-1]
-    elif name != ".":
-        sp.append(name)
-
-print("/" + "/".join(sp))
+n = int(input())
+sp = list(int(elem.split(":")[0]) * 60 + int(elem.split(":")[1]) for elem in input().split())
+sp.extend(list(map(lambda x: x + 1440, sp)))
+sp = sorted(sp)
+ans = None
+for i in range(0, len(sp) - 1):
+    if ans is None or sp[i + 1] - sp[i] < ans:
+        ans = sp[i + 1] - sp[i]
+print(ans)
