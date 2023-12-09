@@ -1,15 +1,12 @@
-st = input()
-flag = True
-ans = ""
-mid = len(st) // 2
-for i in range(mid):
-    if flag and st[i] > "a":
-        flag = False
-        ans = st[:i] + "a" + st[i + 1:]
-        break
-if len(st) <= 1:
-    print()
-elif not flag:
-    print(ans)
-else:
-    print(st[:-1] + "b")
+n, k = map(int, input().split())
+sp = list(map(int, input().split()))
+nums_dict = dict()
+ans = False
+for i in range(n):
+    num = sp[i]
+    if num in nums_dict:
+        if i - nums_dict[num] <= k:
+            ans = True
+            break
+    nums_dict[num] = i
+print("YES" if ans else "NO")
