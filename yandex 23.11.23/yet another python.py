@@ -1,12 +1,19 @@
-n, k = map(int, input().split())
-sp = list(map(int, input().split()))
-nums_dict = dict()
-ans = False
-for i in range(n):
-    num = sp[i]
-    if num in nums_dict:
-        if i - nums_dict[num] <= k:
-            ans = True
+words_dict = dict()
+for value in input().split():
+    words_dict[len(value)] = words_dict.get(len(value), list()) + [value]
+text = input().split()
+ans = list()
+for elem in text:
+    flag = False
+    for key in sorted(filter(lambda x: x < len(elem), words_dict.keys())):
+        for word in words_dict[key]:
+            if elem.startswith(word):
+                ans.append(word)
+                flag = True
+                break
+        if flag:
             break
-    nums_dict[num] = i
-print("YES" if ans else "NO")
+    if not flag:
+        ans.append(elem)
+
+print(" ".join(ans))
