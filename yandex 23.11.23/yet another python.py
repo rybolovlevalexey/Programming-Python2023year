@@ -1,19 +1,12 @@
-words_dict = dict()
-for value in input().split():
-    words_dict[len(value)] = words_dict.get(len(value), list()) + [value]
-text = input().split()
-ans = list()
-for elem in text:
-    flag = False
-    for key in sorted(filter(lambda x: x < len(elem), words_dict.keys())):
-        for word in words_dict[key]:
-            if elem.startswith(word):
-                ans.append(word)
-                flag = True
-                break
-        if flag:
-            break
-    if not flag:
-        ans.append(elem)
-
-print(" ".join(ans))
+n = int(input())
+nums = sorted(map(int, input().split()))
+left, right = 0, 0
+count = 0
+for i in range(n):
+    while left < n and nums[left] <= nums[i] * 0.5 + 7:
+        left += 1
+    while right < n and nums[right] <= nums[i]:
+        right += 1
+    if right != left:
+        count += right - left - 1
+print(count)
