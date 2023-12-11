@@ -1,12 +1,22 @@
 n = int(input())
-nums = sorted(map(int, input().split()))
-left, right = 0, 0
-count = 0
+sp: list[tuple[int]] = list()
 for i in range(n):
-    while left < n and nums[left] <= nums[i] * 0.5 + 7:
-        left += 1
-    while right < n and nums[right] <= nums[i]:
-        right += 1
-    if right != left:
-        count += right - left - 1
-print(count)
+    time = tuple(map(int, input().split()))
+    if len(sp) == 0 or time[1] < sp[0][1] or (time[1] == sp[0][1] and time[0] <= sp[0][0]):
+        sp = [time] + sp
+        continue
+    for j in range(1, i - 1):
+        if sp[j - 1][1] < time[1] < sp[j + 1][1] or \
+                (sp[j - 1][1] <= time[1] < sp[j + 1][1] and sp[j - 1][0] <= time[0]) or \
+                (sp[j - 1][1] < time[1] <= sp[j + 1][1] and time[0] <= sp[j + 1][0]):
+            sp.insert(j, time)
+            break
+    else:
+        sp.append(time)
+cur_time = None
+ans = 0
+for elem in sp:
+    if cur_time is None or elem[0] >= cur_time[1]:
+        cur_time = elem
+        ans += 1
+print(ans)
